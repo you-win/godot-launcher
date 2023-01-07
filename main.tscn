@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dncmkillr7mcq"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_uq0ne"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbm07"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_uq0ne")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbm07")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1590.0
+offset_bottom = 890.0
+
+[node name="Toolbar" type="HFlowContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 1580.0
+offset_bottom = 31.0
+
+[node name="AddBinary" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 93.0
+offset_bottom = 31.0
+text = "Add binary"
+
+[node name="ConfigDir" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 97.0
+offset_right = 155.0
+offset_bottom = 31.0
+text = "Config"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+anchors_preset = -1
+offset_top = 35.0
+offset_right = 1580.0
+offset_bottom = 880.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Binaries" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 1580.0
+size_flags_horizontal = 3
