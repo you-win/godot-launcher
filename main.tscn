@@ -21,23 +21,27 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pbm07")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 590.0
 offset_bottom = 890.0
 
 [node name="Toolbar" type="HFlowContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
 offset_right = 580.0
 offset_bottom = 46.0
 
 [node name="AddBinary" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 138.0
 offset_bottom = 46.0
 text = "Add binary"
 
 [node name="EditConfig" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 144.0
 offset_right = 276.0
 offset_bottom = 46.0
@@ -45,12 +49,14 @@ text = "Edit config"
 
 [node name="ConfigDir" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_left = 282.0
 offset_right = 478.0
 offset_bottom = 46.0
 text = "Config directory"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
 anchors_preset = -1
 offset_top = 52.0
 offset_right = 580.0
@@ -61,5 +67,6 @@ size_flags_vertical = 3
 
 [node name="Binaries" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
+layout_mode = 2
 offset_right = 580.0
 size_flags_horizontal = 3

@@ -47,6 +47,7 @@ func _ready() -> void:
 			if popup.is_queued_for_deletion():
 				return
 			popup.queue_free()
+			get_tree().reload_current_scene()
 		)
 		
 		add_child(popup)
