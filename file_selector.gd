@@ -1,28 +1,28 @@
-class_name BinaryButton
-extends Button
-
-var binary_path := ""
+class_name FileSelector
+extends FileDialog
 
 #-----------------------------------------------------------------------------#
 # Builtin functions
 #-----------------------------------------------------------------------------#
 
-func _init(path: String) -> void:
-	self.binary_path = path
-	self.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	
-	self.text = self.binary_path.get_file()
-	
-	self.pressed.connect(func() -> void:
-		var err := OS.create_process(binary_path, ["-p"])
-		if err < 0:
-			OS.alert("Unable to start binary at path %s" % binary_path)
-	)
+func _init(path: String, file_mode: FileMode) -> void:
+	self.access = FileDialog.ACCESS_FILESYSTEM
+	self.file_mode = file_mode
+	self.current_dir = path
+	self.close_requested.connect(_queue_free.bind(self))
+	self.cancelled.connect(_queue_free.bind(self))
+	self.confirmed.connect(_queue_free.bind(self))
 
 #-----------------------------------------------------------------------------#
 # Private functions
 #-----------------------------------------------------------------------------#
 
+func _queue_free(node: Node) -> void:
+	if node.is_queued_for_deletion():
+		return
+	node.queue_free()
+
 #-----------------------------------------------------------------------------#
 # Public functions
 #-----------------------------------------------------------------------------#
+

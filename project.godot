@@ -18,10 +18,16 @@ _global_script_classes=[{
 "class": &"Config",
 "language": &"GDScript",
 "path": "res://config.gd"
+}, {
+"base": "FileDialog",
+"class": &"FileSelector",
+"language": &"GDScript",
+"path": "res://file_selector.gd"
 }]
 _global_script_class_icons={
 "BinaryButton": "",
-"Config": ""
+"Config": "",
+"FileSelector": ""
 }
 
 [application]
@@ -31,11 +37,21 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/shadowed_variable=0
+gdscript/warnings/shadowed_variable_base_class=0
+gdscript/warnings/shadowed_global_identifier=0
+
 [display]
 
 window/size/viewport_width=600
 window/size/viewport_height=900
 window/subwindows/embed_subwindows=false
+
+[editor]
+
+script/templates_search_path="res://script-templates"
 
 [gui]
 

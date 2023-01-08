@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvr2y04bihxg2"]
+
+[ext_resource type="Script" path="res://config_edit.gd" id="1_iyepb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbc5j"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="ConfigEdit" type="Window"]
+title = "Edit Config"
+size = Vector2i(1600, 900)
+script = ExtResource("1_iyepb")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dbc5j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 590.0
+offset_bottom = 890.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 580.0
+offset_bottom = 828.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+offset_right = 580.0
+offset_bottom = 828.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DefaultSearchPath" type="HBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 580.0
+offset_bottom = 46.0
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/DefaultSearchPath"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 271.0
+offset_bottom = 42.0
+size_flags_horizontal = 3
+text = "Default search path"
+
+[node name="DefaultSearchPath" type="LineEdit" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/DefaultSearchPath"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 277.0
+offset_right = 548.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="Picker" type="Button" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer/DefaultSearchPath"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 554.0
+offset_right = 580.0
+offset_bottom = 46.0
+text = "::"
+
+[node name="BinariesLabel" type="Label" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 52.0
+offset_right = 580.0
+offset_bottom = 90.0
+text = "Binaries"
+horizontal_alignment = 1
+
+[node name="Binaries" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 96.0
+offset_right = 580.0
+offset_bottom = 96.0
+
+[node name="ResetConfig" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 834.0
+offset_right = 580.0
+offset_bottom = 880.0
+text = "Reset"
