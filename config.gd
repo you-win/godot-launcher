@@ -8,6 +8,8 @@ var first_time_setup := true
 @export
 var default_search_path: String = ""
 @export
+var close_on_run := false
+@export
 var registered_binaries: Array[String] = []
 
 func save() -> int:

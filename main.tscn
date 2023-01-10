@@ -39,19 +39,27 @@ offset_right = 138.0
 offset_bottom = 46.0
 text = "Add binary"
 
-[node name="EditConfig" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
+[node name="Verify" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_left = 144.0
-offset_right = 276.0
+offset_right = 224.0
+offset_bottom = 46.0
+text = "Verify"
+
+[node name="EditConfig" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 230.0
+offset_right = 362.0
 offset_bottom = 46.0
 text = "Edit config"
 
 [node name="ConfigDir" type="Button" parent="PanelContainer/VBoxContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 282.0
-offset_right = 478.0
+offset_left = 368.0
+offset_right = 564.0
 offset_bottom = 46.0
 text = "Config directory"
 

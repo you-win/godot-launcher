@@ -48,6 +48,8 @@ var default_search_path: LineEdit = %DefaultSearchPath
 @onready
 var picker: Button = %Picker
 @onready
+var close_on_run: CheckButton = %CloseOnRun
+@onready
 var binaries: VBoxContainer = %Binaries
 @onready
 var reset_config: Button = %ResetConfig
@@ -81,6 +83,8 @@ func _ready() -> void:
 		popup.popup_centered_ratio()
 	)
 	
+	close_on_run.set_pressed_no_signal(config.close_on_run)
+	
 	for binary in config.registered_binaries:
 		binaries.add_child(DraggableLabel.new(binary))
 	
@@ -103,6 +107,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	config.default_search_path = default_search_path.text
+	config.close_on_run = close_on_run.button_pressed
 	config.registered_binaries.clear()
 	for label in binaries.get_children():
 		config.registered_binaries.append(label.text)

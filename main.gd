@@ -5,6 +5,8 @@ const ConfigEdit: PackedScene = preload("res://config_edit.tscn")
 @onready
 var add_binary_button: Button = %AddBinary
 @onready
+var verify_button: Button = %Verify
+@onready
 var edit_config_button: Button = %EditConfig
 @onready
 var config_dir_button: Button = %ConfigDir
@@ -24,6 +26,7 @@ func _init() -> void:
 	if not config.default_search_path.is_empty():
 		user_home_path = config.default_search_path
 	elif config.first_time_setup:
+		config.first_time_setup = false
 		user_home_path = _get_home_dir()
 
 func _ready() -> void:
@@ -39,6 +42,12 @@ func _ready() -> void:
 		
 		add_child(popup)
 		popup.popup_centered_ratio()
+	)
+	verify_button.pressed.connect(func() -> void:
+		if _all_binaries_exist():
+			OS.alert("All binaries verified to exist!", "Woo!")
+		else:
+			get_tree().reload_current_scene()
 	)
 	edit_config_button.pressed.connect(func() -> void:
 		var popup: Window = ConfigEdit.instantiate()
@@ -57,6 +66,7 @@ func _ready() -> void:
 		OS.shell_open(OS.get_user_data_dir())
 	)
 	
+	_all_binaries_exist()
 	for path in config.registered_binaries:
 		_add_binary(path)
 
@@ -91,6 +101,10 @@ func _queue_free(node: Node) -> void:
 
 func _add_binary(path: String) -> void:
 	var button := BinaryButton.new(path)
+	button.pressed.connect(func() -> void:
+		if config.close_on_run:
+			get_tree().quit()
+	)
 	binaries.add_child(button)
 
 func _register_binary(path: String) -> bool:
@@ -104,6 +118,24 @@ func _register_binary(path: String) -> bool:
 		return false
 	
 	return true
+
+func _all_binaries_exist() -> bool:
+	var missing_binaries: Array[String] = []
+	for path in config.registered_binaries:
+		if not FileAccess.file_exists(path):
+			missing_binaries.append(path)
+	
+	var missing_list := ""
+	for path in missing_binaries:
+		missing_list += "%s " % path
+		config.registered_binaries.erase(path)
+	
+	missing_list = missing_list.strip_edges()
+	
+	if not missing_binaries.is_empty():
+		OS.alert("The following binaries could not be found: %s" % missing_list, "Spoopy!")
+	
+	return missing_list.is_empty()
 
 #-----------------------------------------------------------------------------#
 # Public functions
