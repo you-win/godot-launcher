@@ -41,7 +41,7 @@ func _ready() -> void:
 		)
 		
 		add_child(popup)
-		popup.popup_centered_ratio()
+		popup.popup_centered_ratio(0.5)
 	)
 	verify_button.pressed.connect(func() -> void:
 		if _all_binaries_exist():
@@ -60,7 +60,7 @@ func _ready() -> void:
 		)
 		
 		add_child(popup)
-		popup.popup_centered_ratio()
+		popup.popup_centered_ratio(0.5)
 	)
 	config_dir_button.pressed.connect(func() -> void:
 		OS.shell_open(OS.get_user_data_dir())
@@ -104,6 +104,13 @@ func _add_binary(path: String) -> void:
 	button.pressed.connect(func() -> void:
 		if config.close_on_run:
 			get_tree().quit()
+	)
+	button.order_changed.connect(func() -> void:
+		var new_order: Array[String] = []
+		for b in binaries.get_children():
+			new_order.append(b.binary_path)
+		
+		config.registered_binaries = new_order
 	)
 	binaries.add_child(button)
 
